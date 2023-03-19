@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { redirect } from "react-router-dom";
 import {
   createuser,
   getAllUser,
@@ -30,9 +29,9 @@ export function CrudOpration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userForm._id) {
-      let responce = await updateuser(userForm);
+    await updateuser(userForm);
     } else {
-      let responce = await createuser(userForm);
+    await createuser(userForm);
     }
     setUserForm({ ...initialState });
     getAllUserdata();
@@ -44,8 +43,8 @@ export function CrudOpration() {
   };
 
   const deleteCurrentuser = async (id) => {
-    if (window.confirm("Are You sure You Want To Logout ? ")) {
-      let deleteduser = await deleteuser(id);
+    if (window.confirm("Are You sure You Want To Delete ? ")) {
+      await deleteuser(id);
       getAllUserdata();
     }
   };
@@ -60,9 +59,9 @@ export function CrudOpration() {
 
   return (
     <>
-      <div className="row container">
+      <div className="row container mt-5">
         <div className=" card card-body col-md-4">
-          <h4>My Form</h4> {userForm.Gender}
+          <h4>Create Users</h4>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label>Enter firstName:</label>
@@ -170,7 +169,7 @@ export function CrudOpration() {
           </form>
         </div>
         <div className=" card card-body col-md-7 offset-1">
-          <h4>All users</h4>
+          <h4>Users</h4>
           <div style={{ maxHeight: "500px", color: "red", overflowX: "auto" }}>
             <table className="table table-striped table-hover">
               <thead>
