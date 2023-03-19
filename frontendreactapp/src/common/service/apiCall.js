@@ -1,7 +1,6 @@
 const URL = "http://localhost:4000";
 
 export async function createuser(data) {
-    
   var response = await fetch(URL + "/create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -25,7 +24,7 @@ export async function getAllUser(search) {
   var response = await fetch(URL + "/getAllUser/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    data:JSON.stringify(search)
+    body: JSON.stringify(search),
   });
 
   return await response.json();

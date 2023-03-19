@@ -29,9 +29,9 @@ export function CrudOpration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userForm._id) {
-    await updateuser(userForm);
+      await updateuser(userForm);
     } else {
-    await createuser(userForm);
+      await createuser(userForm);
     }
     setUserForm({ ...initialState });
     getAllUserdata();
@@ -55,7 +55,7 @@ export function CrudOpration() {
 
   useEffect(() => {
     getAllUserdata();
-  }, []);
+  }, [searchinput]);
 
   return (
     <>
@@ -170,6 +170,16 @@ export function CrudOpration() {
         </div>
         <div className=" card card-body col-md-7 offset-1">
           <h4>Users</h4>
+          <div className="col-md-10 offset-1">
+            <input
+              value={searchinput}
+              name="Gender"
+              onChange={(e) => setSearchinput(e.target.value)}
+              className="form-control"
+              placeholder="Search User"
+              type="text"
+            />
+          </div>
           <div style={{ maxHeight: "500px", color: "red", overflowX: "auto" }}>
             <table className="table table-striped table-hover">
               <thead>
